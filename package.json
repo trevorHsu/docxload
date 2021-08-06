@@ -1,7 +1,7 @@
 {
   "name": "docxload",
-  "version": "0.0.0",
-  "description": "export docx file in front-end by using string template",
+  "version": "0.0.1",
+  "description": "Export docx file in front-end by using string template.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,5 +12,12 @@
     "worker"
   ],
   "author": "Trevor Hsu",
-  "license": "ISC"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trevorHsu/docxload.git"
+  },
+  "bugs": {
+    "url": "https://github.com/trevorHsu/docxload/issues"
+  }
 }
