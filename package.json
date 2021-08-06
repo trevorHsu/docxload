@@ -1,6 +1,6 @@
 {
   "name": "docxload",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Export docx file in front-end by using string template.",
   "main": "index.js",
   "scripts": {
