@@ -1,0 +1,16 @@
+{
+  "name": "docxload",
+  "version": "0.0.0",
+  "description": "export docx file in front-end by using string template",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "docx",
+    "template",
+    "worker"
+  ],
+  "author": "Trevor Hsu",
+  "license": "ISC"
+}
