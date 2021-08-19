@@ -1,0 +1,20 @@
+#btn-container .btn {
+  display: inline-block;
+  padding: 4px 8px;
+  background: #ceeaff;
+  color: #505e69;
+  border-radius: 4px;
+  cursor: pointer;
+  outline-color: #4679a7;
+  outline-width: 5px;
+  border: 1px solid #b4d0e6;
+  transition: .2s;
+  margin-right: 10px;
+  margin-bottom: 8px;
+  user-select: none;
+}
+
+#btn-container .btn:hover {
+  border: 1px solid #4a95d0;
+  color: #4a95d0;
+}
