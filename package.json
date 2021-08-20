@@ -1,7 +1,7 @@
 {
   "name": "docxload",
-  "version": "0.0.2",
-  "description": "Export docx file in front-end by using string template.",
+  "version": "0.1.0",
+  "description": "to generate .docx files on front-end by using tag template.",
   "main": "index.js",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
@@ -10,7 +10,13 @@
   "keywords": [
     "docx",
     "template",
-    "worker"
+    "worker",
+    "office",
+    "document",
+    "microsoft",
+    "word",
+    "docs",
+    "browser"
   ],
   "author": "Trevor Hsu",
   "license": "MIT",
