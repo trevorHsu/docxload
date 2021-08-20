@@ -14,12 +14,15 @@ function parseAttrs(data) {
   let scanner = 0
   let pointer = 0
   let isQuote = false
-  const valueReg = /"(.*)"/
+  const valueRegs = [ // 属性值的格式
+    /"(.*)"/, // 字符串
+    /\{(.*)\}/ // 表达式
+  ]
 
   while (scanner < data.length) {
     const char = data[scanner]
 
-    if (char === '"') {
+    if (char === '"' || char === '{' || char === '}') {
       isQuote = !isQuote
     } else if (char === ' ' && !isQuote) {
       const attr = data.substring(pointer, scanner).trim()
@@ -37,11 +40,13 @@ function parseAttrs(data) {
 
     if (typeof value === 'undefined') {
       throw new Error(`value of attribute "${key}" is undefined`)
-    } else if (!valueReg.test(value)) {
+    } else if (valueRegs[0].test(value)) {
+      result[key] = valueRegs[0].exec(value)[1]
+    } else if (valueRegs[1].test(value)) {
+      result[key] = eval(valueRegs[1].exec(value)[1])
+    } else {
       throw new Error(`value of attribute "${key}" without quote`)
     }
-
-    result[key] = valueReg.exec(value)[1]
   })
 
   return result
