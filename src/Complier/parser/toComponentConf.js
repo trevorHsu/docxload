@@ -1,4 +1,5 @@
-import { syncMap } from '@src/libs/functional'
+import { syncMap } from '@src/utils/functional'
+import { imgSrcToBase64 } from '@src/utils/parse'
 import { COMPONENT_TYPES } from '../types'
 
 const { SECTION, TITLE, TABLE, PARAGRAPH, TEXT, ROW, CELL, IMAGE, BREAK } = COMPONENT_TYPES
@@ -23,9 +24,11 @@ async function componentConfFactory(tagData) {
   }
 
   switch (TAG_MAP[tagData.tag]) {
-    case IMAGE: // 无图片资源时，去掉该配置
-      if (!tagData.attrs || !tagData.attrs.src) {
+    case IMAGE:
+      if (!tagData.attrs || !tagData.attrs.src) { // 无图片资源时，去掉该配置
         result = null
+      } else if (tagData.attrs.src) {
+        tagData.attrs.src = await imgSrcToBase64(tagData.attrs.src)
       }
       break
     case TEXT:

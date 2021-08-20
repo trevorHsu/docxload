@@ -1,4 +1,4 @@
-import { pipe } from '../../libs/functional'
+import { pipe } from '@src/utils/functional'
 import toAST from './toAST'
 import toComponentConf from './toComponentConf'
 
