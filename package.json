@@ -1,6 +1,6 @@
 {
   "name": "docxload",
-  "version": "0.1.4",
+  "version": "0.1.6",
   "description": "to generate .docx files on front-end by using tag template.",
   "main": "dist/index.js",
   "scripts": {
@@ -36,12 +36,12 @@
     "css-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.2",
     "mini-css-extract-plugin": "^2.2.0",
+    "terser-webpack-plugin": "^5.1.4",
     "webpack": "^5.48.0",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
-    "docx": "^6.0.3",
-    "terser-webpack-plugin": "^5.1.4"
+    "docx": "^6.0.3"
   }
 }
