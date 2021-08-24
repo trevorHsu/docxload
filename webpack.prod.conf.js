@@ -1,5 +1,6 @@
 const { resolve } = require('path')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   mode: 'production',
@@ -37,6 +38,9 @@ module.exports = {
   output: {
     filename: 'index.js',
     path: resolve(__dirname, 'dist'),
+    libraryTarget: "umd",
+    library: "docxload",
+    globalObject: "this",
     publicPath: './',
     environment: {
       arrowFunction: false
@@ -44,5 +48,10 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin()
-  ]
+  ],
+  optimization: {
+    minimizer: [new TerserPlugin({
+      extractComments: false
+    })]
+  }
 }

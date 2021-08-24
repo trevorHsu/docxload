@@ -41,6 +41,7 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
-    "docx": "^6.0.3"
+    "docx": "^6.0.3",
+    "terser-webpack-plugin": "^5.1.4"
   }
 }
