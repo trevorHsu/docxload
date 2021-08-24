@@ -1,4 +1,4 @@
-const exportWord = function(blob, title) {
+const exportFile = function(blob, title) {
   const createA = document.createElement('a')
   const href = window.URL.createObjectURL(blob)
 
@@ -11,4 +11,4 @@ const exportWord = function(blob, title) {
   window.URL.revokeObjectURL(href)
 }
 
-export default exportWord
+export default exportFile

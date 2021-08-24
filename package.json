@@ -2,7 +2,7 @@
   "name": "docxload",
   "version": "0.1.0",
   "description": "to generate .docx files on front-end by using tag template.",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
     "dev": "cross-env NODE_ENV=development webpack-dev-server"

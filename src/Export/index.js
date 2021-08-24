@@ -1,4 +1,4 @@
-import exportWord from './exportWord'
+import exportFile from './exportFile'
 
 class Export {
   constructor(data) {
@@ -6,7 +6,7 @@ class Export {
   }
 
   export(title) {
-    return exportWord(this.data, title)
+    return exportFile(this.data, title)
   }
 }
 
