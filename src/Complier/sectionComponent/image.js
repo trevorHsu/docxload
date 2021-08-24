@@ -1,8 +1,9 @@
 import { ImageRun } from 'docx'
-import { getAttrs } from './common'
+import { getAttrs, addAttrs } from './common'
 
 function image(conf) {
-  const { width, height, src } = getAttrs(conf)
+  const attrs = getAttrs(conf)
+  const { width, height, src } = attrs
 
   const imageConf = {
     data: src || '',
@@ -11,6 +12,9 @@ function image(conf) {
       height: height ? Number(height) : 100
     }
   }
+
+  addAttrs(imageConf, attrs, false)
+
   return new ImageRun(imageConf)
 }
 

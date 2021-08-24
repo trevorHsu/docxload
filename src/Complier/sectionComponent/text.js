@@ -2,7 +2,8 @@ import { TextRun } from 'docx'
 import { getAttrs, addAttrs } from './common'
 
 function text(conf) {
-  const { bold, color, fontSize } = getAttrs(conf)
+  const attrs = getAttrs(conf)
+  const { fontSize } = attrs
   const textConf = {
     text: conf.value || ''
   }
@@ -11,7 +12,7 @@ function text(conf) {
     textConf.size = Number(fontSize) || 20
   }
 
-  addAttrs(textConf, { bold, color })
+  addAttrs(textConf, attrs, false)
 
   return new TextRun(textConf)
 }

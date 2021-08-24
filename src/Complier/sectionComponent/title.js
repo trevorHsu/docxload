@@ -9,7 +9,8 @@ function title(conf) {
     }
 
     item.attrs = item.attrs || {}
-    Object.assign(item.attrs, defaultAttrs, item.attrs)
+    Object.assign(defaultAttrs, item.attrs)
+    Object.assign(item.attrs, defaultAttrs)
 
     return item
   })
