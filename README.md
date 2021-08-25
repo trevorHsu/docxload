@@ -43,6 +43,44 @@ docxload(template).then(() => {
 
 <br>
 
+## API
+```ts
+function docxload(template: string, option?: object | string): Promise
+```
+
+### 方法参数：
+**docxload** 方法支持两个参数：<br>
+*template*：标签模板；*option*：配置选项，为可选参数；<br>
+当 *option* 为 string 类型时，可配置导出文件的文件名；<br>
+当 *option* 为 object 类型时，有以下配置选项：
+| 配置字段 | 描述 | 字段类型 | 默认值 |
+| - | - | :-: | - |
+| fileName | 导出文件的文件名，默认后缀名是 *.docx* | String | data.docx |
+| immediate | 是否立即导出文件；<br> 若为 false, 程序将生成文档的二进制文件，但不导出 | Boolean | true |
+
+### 返回值：
+**docxload** 方法执行后将返回一个 Promise 对象，该 Promise 对象的 resolve 方法会传递一个数组 **[blob, exportFile]**，用于扩展操作：
+| 数组成员 | 描述 | 值类型 |
+| - | - | - |
+| blob | 待导出文件的二进制对象 | Blob |
+| exportFile | 用于导出文件的方法 *exportFile(blob, fileName)*；<br>接收两个参数：blob为二进制对象，fileName为文件名 | Function |
+
+### 使用示例：
+```js
+let template = ...
+function docxToPdf() { ... }
+
+docxload(template, { immediate: false }).then(([blob, exportFile]) => {
+  // 对 blob 对象进行处理，如转成 pdf 格式
+  let pdfBlob = docxToPdf(blob)
+  exportFile(pdfBlob, 'data.pdf')
+}).catch(err => {
+  console.log('failed', err)
+})
+```
+
+<br>
+
 ## 标签类型
 docxload 中的标签有两种类型：<br>
 一种是与 docx 包中的类相对应的标签，可支持对应类中的配置选项；<br>
@@ -70,8 +108,6 @@ docxload 中的标签有两种类型：<br>
 **table** > **row** > **cell**
 
 *注意标签中的第二级必须是 title、p、table 之一*
-
-
 
 <br>
 
