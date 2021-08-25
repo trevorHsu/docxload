@@ -1,27 +1,16 @@
 import docxload from '@src/index'
 
 function addBtn(name, template) {
-  let baseStyle = 'font-weight: bold; background: #4679a7; color: #fff; padding: 4px 6px; border-radius: 6px;'
-
-  _.addBtn({
-    name,
-    onClick() {
-      let beginTime = Date.now()
-      console.log(`%cbegin: ${name}`, baseStyle)
-
-      docxload(template).then(res => {
-        let endTime = Date.now()
-        console.log(`%cend: ${name}%c  [${endTime - beginTime} ms]`, baseStyle, 'color: green;')
-      }).catch(err => {
-        console.error(`failed: ${name}%c`, err)
-      })
-    }
+  _.addBtn(name, done => {
+    docxload(template, name).then(([blob, exportFile]) => {
+      done()
+    })
   })
 }
 
 
 addBtn(
-  '普通文本', `
+  '普通文本',  `
   <page orientation="horizontal">
     <title>d<span color="#f44336">o</span>cxload</title>
 
