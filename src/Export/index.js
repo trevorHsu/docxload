@@ -1,12 +1,17 @@
 import exportFile from './exportFile'
 
 class Export {
-  constructor(data) {
-    this.data = data
+  constructor(blob) {
+    this.blob = blob
   }
 
-  export(title) {
-    return exportFile(this.data, title)
+  export(fileName, immediate) {
+    immediate && exportFile(this.blob, fileName)
+
+    return Promise.resolve([
+      this.blob, 
+      (blob, newFileName) => exportFile(blob, newFileName || fileName)
+    ])
   }
 }
 
