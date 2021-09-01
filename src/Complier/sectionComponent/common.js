@@ -24,4 +24,11 @@ function getAttrs(conf) {
   return conf.attrs || {}
 }
 
-export { addAttrs, addConfAttrs, getAttrs }
+function processAttrs(attrs, handler) {
+  // handler[key] 为属性处理方法，返回一个对象
+  Object.keys(attrs).forEach(key => {
+    handler[key] && Object.assign(attrs, handler[key](attrs[key], attrs))
+  })
+}
+
+export { addAttrs, addConfAttrs, getAttrs, processAttrs }

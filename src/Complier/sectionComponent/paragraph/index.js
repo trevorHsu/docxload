@@ -1,6 +1,8 @@
 import { Paragraph } from 'docx'
-import { generateComponents } from '../generator'
-import { getAttrs, addAttrs } from './common'
+import { generateComponents } from '@src/Complier/generator'
+import { getAttrs, addAttrs, processAttrs } from '../common'
+import attrsHandler from './paragraph-attrs'
+
 
 function paragraph(conf) {
   const attrs = getAttrs(conf)
@@ -8,6 +10,7 @@ function paragraph(conf) {
     children: generateComponents(conf.children)
   }
 
+  processAttrs(attrs, attrsHandler)
   addAttrs(paragraphConf, attrs, false)
 
   return new Paragraph(paragraphConf)

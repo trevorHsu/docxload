@@ -1,17 +1,14 @@
 import { TextRun } from 'docx'
-import { getAttrs, addAttrs } from './common'
+import { getAttrs, addAttrs, processAttrs } from '../common'
+import attrsHandler from './text-attrs'
 
 function text(conf) {
   const attrs = getAttrs(conf)
-  const { fontSize } = attrs
   const textConf = {
     text: conf.value || ''
   }
 
-  if (fontSize) {
-    textConf.size = Number(fontSize) || 20
-  }
-
+  processAttrs(attrs, attrsHandler)
   addAttrs(textConf, attrs, false)
 
   return new TextRun(textConf)
