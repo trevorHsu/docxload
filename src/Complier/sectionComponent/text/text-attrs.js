@@ -1,6 +1,6 @@
 import { UnderlineType } from 'docx'
 
-function underline(val) { // 下划线
+function underline(val, attrs) { // 下划线
   let result
 
   if (typeof val === 'object') {
@@ -15,13 +15,17 @@ function underline(val) { // 下划线
     }
   }
 
-  return { underline: result }
+  if (result) {
+    attrs.underline = result
+  }
 }
 
-function fontSize(val) {
-  let result= Number(val) || 20
+function fontSize(val, attrs) {
+  if (!val) {
+    return
+  }
 
-  return { size: result }
+  attrs.size = Number(val) || 20
 }
 
 export default { underline, fontSize }

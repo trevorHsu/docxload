@@ -25,9 +25,8 @@ function getAttrs(conf) {
 }
 
 function processAttrs(attrs, handler) {
-  // handler[key] 为属性处理方法，返回一个对象
-  Object.keys(attrs).forEach(key => {
-    handler[key] && Object.assign(attrs, handler[key](attrs[key], attrs))
+  Object.keys(handler).forEach(key => {
+    handler[key](attrs[key], attrs)
   })
 }
 

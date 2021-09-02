@@ -1,26 +1,24 @@
 import { HeadingLevel } from 'docx'
 
-function heading(val) { // 标题等级
-  let result
-
-  if (val) {
-    result = HeadingLevel[val.toUpperCase()]
+function heading(val, attrs) { // 标题等级
+  if (!val) {
+    return
   }
 
-  return { heading: result }
+  attrs.heading = HeadingLevel[val.toUpperCase()]
 }
 
-function indent(val) { // 增加缩进
-  let result
-
-  if (val) {
-    const oneTab = 500
-    val = Math.abs(Number(val))
-
-    result = { left: val * oneTab }
+function indent(val, attrs) { // 增加缩进
+  if (!val) {
+    return
   }
 
-  return { indent: result }
+  const oneTab = 500
+  val = Math.abs(Number(val))
+
+  if (val) {
+    attrs.indent = { left: val * oneTab }
+  }
 }
 
 export default { heading, indent }
