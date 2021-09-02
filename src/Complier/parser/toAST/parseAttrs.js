@@ -1,56 +1,51 @@
 import { toCamelCase } from '@src/utils/string'
+import { BASE64_PATTERN } from '@src/utils/parse'
 
 // 将字符串格式 "key1: value1; key2: value2" 转成对象 { key1: value1, key2: value2 }
 function parseSubAttrs(data) {
   let result = data
 
-  if (data && typeof data === 'string' && data.indexOf(';') !== -1) {
+  if (
+    data 
+    && typeof data === 'string' 
+    && data.indexOf(';') !== -1 
+    && !BASE64_PATTERN.test(data)
+  ) {
+    let strLen = data.length
+    let curStr = ''
+    let scanner = 0
+    let colonIndex = -1
+
     result = {}
 
-    // 扫描字符串  找出 key value
+    while (scanner < strLen) {
+      let curChar = data[scanner]
 
+      if (curChar === ';') {
+        if (colonIndex !== -1) {
+          let key = curStr.substring(0, colonIndex).trim()
+          let value = curStr.substring(colonIndex + 1).trim()
+          if (key && value) result[key] = value
+        }
 
-  //   data.split(';').forEach(item => {
-  //     let pair = item.split(':')
-  //     pair[0]
-  //   })
+        colonIndex = -1
+        curStr = ''
+      } else if (curChar === ':') {
+        if (colonIndex !== -1) curStr = curStr.substring(colonIndex + 1)
+        colonIndex = curStr.length
+        curStr += curChar
+      } else {
+        curStr += curChar
+      }
 
-  // let left = data
+      scanner++
+    }
 
-  // let 
-
-
-  // while (left.length) {
-  //   let curVal = left[0]
-
-
-  //   if (curVal === ';') {
-
-  //   } else if (curVal === ':') {
-
-  //   } else {
-
-  //   }
-
-
-
-
-  // }
-
-
-
-
-
-  /**
-   * a: b; c: d
-   * a: ;; b: c;
-   * a: fsd:;
-   * 
-   * ;fasdf
-   * 
-   */
-
-  //   "a: d;c:d;"
+    if (colonIndex !== -1) {
+      let key = curStr.substring(0, colonIndex).trim()
+      let value = curStr.substring(colonIndex + 1).trim()
+      if (key && value) result[key] = value
+    }
   }
 
   return result
