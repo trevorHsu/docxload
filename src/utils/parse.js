@@ -1,4 +1,4 @@
-const BASE64_PATTERN = /^[A-Za-z\d+/]{214}([A-Za-z\d+/][A-Za-z\d+/=]|==)$/
+const BASE64_PATTERN = /data:(.*);base64,(?:[A-Za-z0-9+\/]{4}\n?)*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=)?/
 
 function getImg(src) {
   return new Promise((resolve, reject) => {
@@ -36,5 +36,4 @@ async function imgSrcToBase64(src) {
   return dataURL
 }
 
-
-export { imgSrcToBase64 }
+export { imgSrcToBase64, BASE64_PATTERN }
