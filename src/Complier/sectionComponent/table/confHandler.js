@@ -148,8 +148,7 @@ function fixTableConf(rowsConf, { tableWidth }) { // width, colspan, rowspan, ve
   })
 }
 
-export { 
-  getDefaultCellWidth, getRowSpanInfo, getCellWidthNum, 
+export {  
   getAverageColumnWidths, getTableRows, getRowCells, 
   fixTableConf 
 }
