@@ -1,6 +1,8 @@
 # docxload
 ![NPM version][npm-image]
 
+[English Document][en-doc-url]
+
 通过标签模板的配置来实现 .docx 文件的前端导出。
 
 <br>
@@ -12,8 +14,8 @@ docxload 简化了 docx 的配置，将一些基础配置封装，并以标签�
 <br>
 
 ## 安装
-```bash
-npm install --save docxload
+```shell
+$npm install --save docxload
 ```
 
 <br>
@@ -22,12 +24,16 @@ npm install --save docxload
 ```js
 import docxload from 'docxload'
 
-// 标签属性值为String类型时，用双引号表示值
-// 标签属性值为js表达式时，用大括号表示值
+// 标签属性值为 String 类型时，用双引号表示值
+// 标签属性值为 js 表达式时，用大括号表示值
+// 一个属性中，可以有多个子属性配置，形式为："key1: value1; key2: value2;"，如 underline 属性
 let template = `
   <page>
     <p>
-      <span color="#000">Hello, </span>
+      <span 
+        underline="type: single; color: #000;"
+        color="#000"
+      >Hello, </span>
       <span font-size={30}>docxload</span>
     </p>
   </page>
@@ -94,7 +100,7 @@ docxload 中的标签有两种类型：<br>
 | \<p>\</p> | 段落 | [Paragraph][docx-doc-paragraph] | √ |
 | \<span>\</span> | 文本 | [TextRun][docx-doc-text] | √ |
 | \<img /> | 图片 | [ImageRun][docx-doc-image] | √ |
-| \<table>\</table> | 表格 | - | × |
+| \<table>\</table> | 表格 | - | √ |
 | \<row>\</row> | 表格行 | - | √ |
 | \<cell>\</cell> | 单元格 | -  | √ |
 | \<br /> | 换行 | - | × |
@@ -112,17 +118,34 @@ docxload 中的标签有两种类型：<br>
 <br>
 
 ## 标签属性
-以下属性为 docxload 标签提供的属性配置，其他属性配置见 docx 包中对应类的配置。
+以下属性简化了 docx 包的配置，其他属性配置见 docx 包中对应类的配置，部分属性配置与 docx 文档不一样时，以本文档为准。
 
 ### **page**
 | 属性名 | 描述 | 参数类型 | 可选值 | 默认值 |
 | - | - | - | - | - |
 | orientation | 页面方向 | String | vertical: 垂直方向 <br> horizontal: 水平方向 | vertical |
 
+### **p**
+| 属性名 | 描述 | 参数类型 | 可选值 | 默认值 |
+| - | - | - | - | - |
+| alignment | 水平对齐 | String | center, left, right, distribute, both, start, end | left |
+| heading | 标题等级 | String | title, heading_1, heading_2, heading_3, heading_4, heading_5, heading_6 | - |
+| indent | 增加缩进，一个单位为一次Tab缩进 | Number | - | - |
+
 ### **span**
 | 属性名 | 描述 | 参数类型 | 可选值 | 默认值 |
 | - | - | - | - | - |
-| fontSize | 字体大小 | Number | - | 20 |
+| font-size | 文字大小 | Number | - | 20 |
+| bold | 文字加粗 | Boolean | - | false |
+| color | 文字颜色，颜色名称 或者 16进制颜色 | String | - | - |
+| highlight | 高亮文字，颜色名称 | String | - | - |
+| all-caps  | 全部大写字母 | Boolean | - | false |
+| small-caps | 小型大写字母 | Boolean | - | false |
+| strike | 删除线 | Boolean | - | false |
+| double-strike | 双删除线 | Boolean | - | false |
+| super-script | 上标 | Boolean | - | false |
+| sub-script | 下标 | Boolean | - | false |
+| underline | 下划线<br /> 当为Boolean类型，且值为true时，使用默认下划线样式；<br />当为String类型时，有两个子属性：<br>**type:** 下划线类型；**color:** 下划线颜色 | String, Boolean | **下划线类型 type:**<br/>single, word, double, thick, dotted, dottedheav, dash,<br /> dashedheav, dashlong, dashlongheav, dotdash,dashdotheavy,<br />  dotdotdas, dashdotdotheavy, wave, wavyheavy, wavydouble; | false |
 
 ### **img**
 | 属性名 | 描述 | 参数类型 | 可选值 | 默认值 |
@@ -131,25 +154,32 @@ docxload 中的标签有两种类型：<br>
 | height | 图片高度 | Number | - | 100 |
 | src | 图片资源，可以是网络地址，或是base64格式；<br>当 src 值为网络地址时，docxload 将自动请求图片资源 | String | - | - |
 
+### **table**
+| 属性名 | 描述 | 参数类型 | 可选值 | 默认值 |
+| - | - | - | - | - |
+| width | 表格总宽度，单位% | String | - | 100% |
+
 ### **row**
 | 属性名 | 描述 | 参数类型 | 可选值 | 默认值 |
 | - | - | - | - | - |
-| height | 行高 | String, Number | - | 1cm |
+| height | 行高，单位cm | String, Number | - | 1cm |
 
 ### **cell**
 | 属性名 | 描述 | 参数类型 | 可选值 | 默认值 |
 | - | - | - | - | - |
-| width | 单元格宽度，通过百分比设置 | String | - | 默认平分单元格宽度 |
+| width | 单元格宽度，单位%，百分比相对于表格总宽度 | String | - | 默认平分单元格宽度 |
 | colspan | 合并列 | Number | - | - |
 | rowspan | 合并行 | Number | - | - |
 | align | 水平对齐 | String | center, left, right, distribute, both, start, end | center |
-| verticalAlign | 垂直对齐 | String | center, bottom, top | center |
+| vertical-align | 垂直对齐 | String | center, bottom, top | center |
 | fontSize | 字体大小 | Number | - | 20 |
-
+| border | 单元格边框，有三个子属性配置：<br> **style：** 边框类型 <br>**size：** 边框宽度 数值 <br>**color：** 边框颜色 16进制颜色 | String | **边框类型 style:** <br> single, dash_dot_stroked, dashed,dash_small_gap, dot_dash, dot_dot_dash, <br>dotted, double, double_wave, inset, nil, <br>none, outset, thick, thick_thin_large_gap, thick_thin_medium_gap, <br>thick_thin_small_gap, thin_thick_large_gap, thin_thick_medium_gap, thin_thick_small_gap, thin_thick_thin_large_gap,<br>thin_thick_thin_medium_gap, thin_thick_thin_small_gap, three_d_emboss, three_d_engrave, triple, wave  | - |
+| border-top<br> border-right<br> border-bottom<br> border-left | 单元格单边边框，参数与border属性相同 | String | - | - |
 
 [npm-image]: https://badge.fury.io/js/docxload.svg
 [docx-url]: https://github.com/dolanmiu/docx
 [demo-url]: https://github.com/trevorHsu/docxload/tree/main/test/src
+[en-doc-url]: https://github.com/trevorHsu/docxload/blob/main/README.EN.md
 
 [docx-doc-paragraph]: https://docx.js.org/#/usage/paragraph
 [docx-doc-text]: https://docx.js.org/#/usage/text
