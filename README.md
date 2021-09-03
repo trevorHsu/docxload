@@ -1,32 +1,32 @@
 # docxload
 ![NPM version][npm-image]
 
-[English Document][en-doc-url]
+[中文文档][cn-doc-url]
 
-通过标签模板的配置来实现 .docx 文件的前端导出。
+To generate .docx files on front-end by tag template.
 
 <br>
 
->  docxload 是基于 [docx][docx-url] 包实现的 .docx 文件导出工具。docx 包拥有丰富的配置，能够实现绝大多数 docx 文档的样式需求。但其细致的配置也导致了配置代码相对复杂，当文档样式或内容过多时，其嵌套配置的方式会导致代码可读性降低，维护不方便。
+> **docxload** is a tool for generating .docx files, which is developed based upon [docx][docx-url]. The library **docx** has rich configuration to meet most of demand about setting document content and content style, but its detailed configuration rules sometimes would generate a relatively complexed code. When there are too many document style or content, **docx**'s nested style code would bring low-readable code which is not good for code maintenance. 
 <br><br>
-docxload 简化了 docx 的配置，将一些基础配置封装，并以标签的形式暴露使用。docxload 通过标签的组合来完成配置，使配置工作更快，代码更易读；并且它支持 docx 的大多数配置，充分利用了 docx 的能力，详细配置请见下文。
+**docxload** simplifies **docx**'s configuration. It uses tag string to represent **docx**'s class and generates docx configuration by combining different tags, which is easier to code and to read.
 
 <br>
 
-## 安装
+## Installation
 ```shell
 $npm install --save docxload
 ```
 
 <br>
 
-## 使用
+## Usage
 ```js
 import docxload from 'docxload'
 
-// 标签属性值为 String 类型时，用双引号表示值
-// 标签属性值为 js 表达式时，用大括号表示值
-// 一个属性中，可以有多个子属性配置，形式为："key1: value1; key2: value2;"，如 underline 属性
+// when a tag attribute's data type is string, using Double quotes
+// when a tag attribute's data type is js expression, using curly braces
+// a tag attribute could have multiple subattributes configured as "key1: value1; key2: value2;", such as the "underline" attribute
 let template = `
   <page>
     <p>
@@ -45,7 +45,7 @@ docxload(template).then(() => {
   console.log('failed', err)
 })
 ```
-更多配置示例，见[测试用例][demo-url]。
+For more configuration examples, check out [demo][demo-url].
 
 <br>
 
@@ -54,30 +54,32 @@ docxload(template).then(() => {
 function docxload(template: string, option?: object | string): Promise
 ```
 
-### 方法参数：
-**docxload** 方法支持两个参数：<br>
-*template*：标签模板；*option*：配置选项，为可选参数；<br>
-当 *option* 为 string 类型时，可配置导出文件的文件名；<br>
-当 *option* 为 object 类型时，有以下配置选项：
-| 配置字段 | 描述 | 字段类型 | 默认值 |
+### Payloads:
+**docxload** has 2 parameters：<br>
+*template*：tag template；*option*：configuration option，is an optional parameter；<br>
+
+When *option*'s data type is string, it would set the generated document's file name;<br>
+When *option*'s data type is object, it has following configuration fields:
+| Field | Description | Type | Default |
 | - | - | :-: | - |
-| fileName | 导出文件的文件名，默认后缀名是 *.docx* | String | data.docx |
-| immediate | 是否立即导出文件；<br> 若为 false, 程序将生成文档的二进制文件，但不导出 | Boolean | true |
+| fileName | the generated document's file name，its default extension name is *.docx* | String | data.docx |
+| immediate | whether to generate a document immediately or not；<br> if false, docxload will generate the document's binary data in memory | Boolean | true |
 
-### 返回值：
-**docxload** 方法执行后将返回一个 Promise 对象，该 Promise 对象的 resolve 方法会传递一个数组 **[blob, exportFile]**，用于扩展操作：
-| 数组成员 | 描述 | 值类型 |
+### Returns:
+--------------------------
+**docxload** would return a Promise instance which resolves an array **[blob, exportFile]** for more operations:
+| Array Member | Description | Data Type |
 | - | - | - |
-| blob | 待导出文件的二进制对象 | Blob |
-| exportFile | 用于导出文件的方法 *exportFile(blob, fileName)*；<br>接收两个参数：blob为二进制对象，fileName为文件名 | Function |
+| blob | the Binary Object of the file to be generated | Blob |
+| exportFile | the method for generating a file *exportFile(blob, fileName)*；<br>accepts 2 parameters：blob as binary object，fileName as file name | Function |
 
-### 使用示例：
+### Example:
 ```js
 let template = ...
 function docxToPdf() { ... }
 
 docxload(template, { immediate: false }).then(([blob, exportFile]) => {
-  // 对 blob 对象进行处理，如转成 pdf 格式
+  // processing the blob object
   let pdfBlob = docxToPdf(blob)
   exportFile(pdfBlob, 'data.pdf')
 }).catch(err => {
@@ -87,99 +89,100 @@ docxload(template, { immediate: false }).then(([blob, exportFile]) => {
 
 <br>
 
-## 标签类型
-docxload 中的标签有两种类型：<br>
-一种是与 docx 包中的类相对应的标签，可支持对应类中的配置选项；<br>
-另一种是通过封装 docx 包中的一些配置而实现的标签。
+## Tags
+**docxload** has 2 types of tag：<br>
+1. corresponding with a class in **docx**, supporting almost all the configuration of the class;
+2. created by packaging some configuration code of **docx**
+
 <br>
 
-| 标签 | 描述 | docx 中对应的类 | 是否可配置属性 |
+| Tag | Description | Class in docx | Configurable |
 | :-: | - | :-: | :-: |
-| \<page>\</page> | 文档中的一页 | - | √ |
-| \<title>\</title> | 标题 | - | × |
-| \<p>\</p> | 段落 | [Paragraph][docx-doc-paragraph] | √ |
-| \<span>\</span> | 文本 | [TextRun][docx-doc-text] | √ |
-| \<img /> | 图片 | [ImageRun][docx-doc-image] | √ |
-| \<table>\</table> | 表格 | - | √ |
-| \<row>\</row> | 表格行 | - | √ |
-| \<cell>\</cell> | 单元格 | -  | √ |
-| \<br /> | 换行 | - | × |
+| \<page>\</page> | a page in the document | - | √ |
+| \<title>\</title> | title | - | × |
+| \<p>\</p> | paragraph | [Paragraph][docx-doc-paragraph] | √ |
+| \<span>\</span> | text | [TextRun][docx-doc-text] | √ |
+| \<img /> | image | [ImageRun][docx-doc-image] | √ |
+| \<table>\</table> | table | - | √ |
+| \<row>\</row> | a row of the table | - | √ |
+| \<cell>\</cell> | a cell of the table | -  | √ |
+| \<br /> | break line | - | × |
 
 <br>
 
-标签需按以下层级规则进行嵌套，同级标签不可嵌套：
+Tags should be nested according to the following level rules, tags at the same level should not be nested:
 
 **page** > **title, p, table** > **span, img, br**
 
 **table** > **row** > **cell**
 
-*注意标签中的第二级必须是 title、p、table 之一*
+*note: the second level of the tags must be one of \<title\>, \<p\> or \<table\>.*
 
 <br>
 
-## 标签属性
-以下属性简化了 docx 包的配置，其他属性配置见 docx 包中对应类的配置，部分属性配置与 docx 文档不一样时，以本文档为准。
+## Tag Attributes
+The following attributes have simplified the related configurations of **docx**. For more attributes of a tag, please check out the document of the tag's corresponding class in **docx**. Please refer to this document when an attribute configuration is different from the docx document.
 
 ### **page**
-| 属性名 | 描述 | 参数类型 | 可选值 | 默认值 |
+| Attribute | Description | Type | Option | Default |
 | - | - | - | - | - |
-| orientation | 页面方向 | String | vertical: 垂直方向 <br> horizontal: 水平方向 | vertical |
+| orientation | orientation of the page | String | vertical: portrait <br> horizontal: landscape | vertical |
 
 ### **p**
-| 属性名 | 描述 | 参数类型 | 可选值 | 默认值 |
+| Attribute | Description | Type | Option | Default |
 | - | - | - | - | - |
-| alignment | 水平对齐 | String | center, left, right, distribute, both, start, end | left |
-| heading | 标题等级 | String | title, heading_1, heading_2, heading_3, heading_4, heading_5, heading_6 | - |
-| indent | 增加缩进，一个单位为一次Tab缩进 | Number | - | - |
+| alignment | horizontal alignment | String | center, left, right, distribute, both, start, end | left |
+| heading | title level | String | title, heading_1, heading_2, heading_3, heading_4, heading_5, heading_6 | - |
+| indent | to increase indentation, one unit as one Tab indentation | Number | - | - |
 
 ### **span**
-| 属性名 | 描述 | 参数类型 | 可选值 | 默认值 |
+| Attribute | Description | Type | Option | Default |
 | - | - | - | - | - |
-| font-size | 文字大小 | Number | - | 20 |
-| bold | 文字加粗 | Boolean | - | false |
-| color | 文字颜色，颜色名称 或者 16进制颜色 | String | - | - |
-| highlight | 高亮文字，颜色名称 | String | - | - |
-| all-caps  | 全部大写字母 | Boolean | - | false |
-| small-caps | 小型大写字母 | Boolean | - | false |
-| strike | 删除线 | Boolean | - | false |
-| double-strike | 双删除线 | Boolean | - | false |
-| super-script | 上标 | Boolean | - | false |
-| sub-script | 下标 | Boolean | - | false |
-| underline | 下划线<br /> 当为Boolean类型，且值为true时，使用默认下划线样式；<br />当为String类型时，有两个子属性：<br>**type:** 下划线类型；**color:** 下划线颜色 | String, Boolean | **下划线类型 type:**<br/>single, word, double, thick, dotted, dottedheav, dash,<br /> dashedheav, dashlong, dashlongheav, dotdash,dashdotheavy,<br />  dotdotdas, dashdotdotheavy, wave, wavyheavy, wavydouble; | false |
+| font-size | font size of text | Number | - | 20 |
+| bold | to make text bold | Boolean | - | false |
+| color | text color, using color name or color hex values | String | - | - |
+| highlight | to highlight text, using color name | String | - | - |
+| all-caps  | to transform all the letters into capital letters | Boolean | - | false |
+| small-caps | to transform all the letters into capital letters in mini style | Boolean | - | false |
+| strike | strikethrough | Boolean | - | false |
+| double-strike | double strikethrough | Boolean | - | false |
+| super-script | superscript | Boolean | - | false |
+| sub-script | subscript | Boolean | - | false |
+| underline | underline<br /> When is Boolean type and the value is true, using default underline style;<br />When is String type, it has two subattributes:<br>**type:** underline type; **color:** underline color | String, Boolean | **type:**<br/>single, word, double, thick, dotted, dottedheav, dash,<br /> dashedheav, dashlong, dashlongheav, dotdash,dashdotheavy,<br />  dotdotdas, dashdotdotheavy, wave, wavyheavy, wavydouble; | false |
 
 ### **img**
-| 属性名 | 描述 | 参数类型 | 可选值 | 默认值 |
+| Attribute | Description | Type | Option | Default |
 | - | - | - | - | - |
-| width | 图片宽度 | Number | - | 100 |
-| height | 图片高度 | Number | - | 100 |
-| src | 图片资源，可以是网络地址，或是base64格式；<br>当 src 值为网络地址时，docxload 将自动请求图片资源 | String | - | - |
+| width | width of the image | Number | - | 100 |
+| height | height of the image | Number | - | 100 |
+| src | image resource, can be both url or base64 encoded data<br>when the src value is an url，docxload will request for the image automatically | String | - | - |
 
 ### **table**
-| 属性名 | 描述 | 参数类型 | 可选值 | 默认值 |
+| Attribute | Description | Type | Option | Default |
 | - | - | - | - | - |
-| width | 表格总宽度，单位% | String | - | 100% |
+| width | general width of the table, unit: % | String | - | 100% |
 
 ### **row**
-| 属性名 | 描述 | 参数类型 | 可选值 | 默认值 |
+| Attribute | Description | Type | Option | Default |
 | - | - | - | - | - |
-| height | 行高，单位cm | String, Number | - | 1cm |
+| height | height of the row, unit: cm | String, Number | - | 1cm |
 
 ### **cell**
-| 属性名 | 描述 | 参数类型 | 可选值 | 默认值 |
+| Attribute | Description | Type | Option | Default |
 | - | - | - | - | - |
-| width | 单元格宽度，单位%，百分比相对于表格总宽度 | String | - | 默认平分单元格宽度 |
-| colspan | 合并列 | Number | - | - |
-| rowspan | 合并行 | Number | - | - |
-| align | 水平对齐 | String | center, left, right, distribute, both, start, end | center |
-| vertical-align | 垂直对齐 | String | center, bottom, top | center |
-| fontSize | 字体大小 | Number | - | 20 |
-| border | 单元格边框，有三个子属性配置：<br> **style：** 边框类型 <br>**size：** 边框宽度 数值 <br>**color：** 边框颜色 16进制颜色 | String | **边框类型 style:** <br> single, dash_dot_stroked, dashed,dash_small_gap, dot_dash, dot_dot_dash, <br>dotted, double, double_wave, inset, nil, <br>none, outset, thick, thick_thin_large_gap, thick_thin_medium_gap, <br>thick_thin_small_gap, thin_thick_large_gap, thin_thick_medium_gap, thin_thick_small_gap, thin_thick_thin_large_gap,<br>thin_thick_thin_medium_gap, thin_thick_thin_small_gap, three_d_emboss, three_d_engrave, triple, wave  | - |
-| border-top<br> border-right<br> border-bottom<br> border-left | 单元格单边边框，参数与border属性相同 | String | - | - |
+| width | width of the cell, unit: %, the percentage is relative to the general table width | String | - | average width |
+| colspan | to merge columns | Number | - | - |
+| rowspan | to merge rows | Number | - | - |
+| align | horizontal alignment | String | center, left, right, distribute, both, start, end | center |
+| vertical-align | vertical alignment | String | center, bottom, top | center |
+| fontSize | font size | Number | - | 20 |
+| border | borders of the cell, it has 3 subattributes:<br> **style：** border style <br>**size：** border width, Number <br>**color：** border color, color hex values | String | **style:** <br> single, dash_dot_stroked, dashed,dash_small_gap, dot_dash, dot_dot_dash, <br>dotted, double, double_wave, inset, nil, <br>none, outset, thick, thick_thin_large_gap, thick_thin_medium_gap, <br>thick_thin_small_gap, thin_thick_large_gap, thin_thick_medium_gap, thin_thick_small_gap, thin_thick_thin_large_gap,<br>thin_thick_thin_medium_gap, thin_thick_thin_small_gap, three_d_emboss, three_d_engrave, triple, wave  | - |
+| border-top<br> border-right<br> border-bottom<br> border-left | a border of the cell, its parameters are same as the border attribute's | String | - | - |
 
 [npm-image]: https://badge.fury.io/js/docxload.svg
 [docx-url]: https://github.com/dolanmiu/docx
 [demo-url]: https://github.com/trevorHsu/docxload/tree/main/test/src
-[en-doc-url]: https://github.com/trevorHsu/docxload/blob/main/README.EN.md
+[cn-doc-url]: https://github.com/trevorHsu/docxload/blob/main/README.CN.md
 
 [docx-doc-paragraph]: https://docx.js.org/#/usage/paragraph
 [docx-doc-text]: https://docx.js.org/#/usage/text
