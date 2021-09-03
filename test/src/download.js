@@ -8,15 +8,16 @@ function addBtn(name, template) {
   })
 }
 
-
 addBtn(
   '普通文本',  `
   <page orientation="horizontal">
     <title>d<span color="#f44336">o</span>cxload</title>
 
-    <p font-size={60}><span color="#f44336">docxload</span> is a tool,</p>
+    <p><span font-size={60} color="#f44336">docxload</span> is a tool,</p>
 
-    <p color="#4679a7">which could generates <span bold={true}>.docx</span> files on front-end by using tag template.</p>
+    <p indent={1}>
+      <span underline="type: double; color: #000;" color="#4679a7" highlight="yellow">which could generate </span>
+      <span bold={true}>.docx</span> files on front-end by using tag template.</p>
   </page>
   ` 
 )
@@ -24,19 +25,33 @@ addBtn(
 addBtn(
   '表格', `
   <page>
-    <table>
+    <table width="50%">
       <row>
-        <cell>a</cell>
-        <cell colspan={2}>b</cell>
+        <cell border="color: #ff007a;" width="10%">a</cell>
+        <cell 
+          border-right="color: #ff007a;" 
+          border-top="style: double;" 
+          colspan={2}
+        >b</cell>
       </row>
+
       <row>
-        <cell>c</cell>
-        <cell>d</cell>
+        <cell width="10%">c</cell>
+        <cell width="20%">d</cell>
         <cell>e</cell>
+      </row>
+
+      <row>
+        <cell rowspan={2} width="10%">f</cell>
+        <cell colspan={2}>g</cell>
+      </row>
+
+      <row>
+        <cell colspan={2}>h</cell>
       </row>
     </table>
   </page>
-  ` 
+  `
 )
 
 addBtn(
