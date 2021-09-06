@@ -140,6 +140,7 @@ The following attributes have simplified the related configurations of **docx**.
 | - | - | - | - | - |
 | font-size | font size of text | Number | - | 20 |
 | bold | to make text bold | Boolean | - | false |
+| italics | italic text | Boolean | - | false |
 | color | text color, using color name or color hex values | String | - | - |
 | highlight | to highlight text, using color name | String | - | - |
 | all-caps  | to transform all the letters into capital letters | Boolean | - | false |

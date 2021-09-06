@@ -137,6 +137,7 @@ docxload 中的标签有两种类型：<br>
 | - | - | - | - | - |
 | font-size | 文字大小 | Number | - | 20 |
 | bold | 文字加粗 | Boolean | - | false |
+| italics | 斜体文字 | Boolean | - | false |
 | color | 文字颜色，颜色名称 或者 16进制颜色 | String | - | - |
 | highlight | 高亮文字，颜色名称 | String | - | - |
 | all-caps  | 全部大写字母 | Boolean | - | false |
