@@ -7,7 +7,7 @@ To generate .docx files on front-end by tag template.
 
 <br>
 
-> **docxload** is a tool for generating .docx files, which is developed based upon [docx][docx-url]. The library **docx** has rich configuration to meet most of demand about setting document content and content style, but its detailed configuration rules sometimes would generate a relatively complexed code. When there are too many document style or content, **docx**'s nested style code would bring low-readable code which is not good for code maintenance. 
+> **docxload** is a tool for generating .docx files, which is developed based upon [docx][docx-url]. The package **docx** has rich configuration to meet most of demand about setting document content and content style, but its detailed configuration rules sometimes would generate a relatively complexed code. When there are too many document style or content, **docx**'s nested style code would bring low-readable code which is not good for maintenance. 
 <br><br>
 **docxload** simplifies **docx**'s configuration. It uses tag string to represent **docx**'s class and generates docx configuration by combining different tags, which is easier to code and to read.
 
@@ -58,20 +58,20 @@ function docxload(template: string, option?: object | string): Promise
 **docxload** has 2 parameters：<br>
 *template*：tag template；*option*：configuration option，is an optional parameter；<br>
 
-When *option*'s data type is string, it would set the generated document's file name;<br>
+When *option*'s data type is string, it would set the generated file's name;<br>
 When *option*'s data type is object, it has following configuration fields:
 | Field | Description | Type | Default |
 | - | - | :-: | - |
-| fileName | the generated document's file name，its default extension name is *.docx* | String | data.docx |
-| immediate | whether to generate a document immediately or not；<br> if false, docxload will generate the document's binary data in memory | Boolean | true |
+| fileName | the generated file's name，its default extension name is *.docx* | String | data.docx |
+| immediate | whether to generate a document immediately;<br> if false, docxload will generate the document's binary data in memory | Boolean | true |
 
 ### Returns:
 --------------------------
-**docxload** would return a Promise instance which resolves an array **[blob, exportFile]** for more operations:
-| Array Member | Description | Data Type |
+**docxload** would return a Promise instance which resolves an array **[blob, exportFile]**:
+| Array Member | Description | Type |
 | - | - | - |
-| blob | the Binary Object of the file to be generated | Blob |
-| exportFile | the method for generating a file *exportFile(blob, fileName)*；<br>accepts 2 parameters：blob as binary object，fileName as file name | Function |
+| blob | a Binary Object of the file to be generated | Blob |
+| exportFile | a method for generating a file;<br> *exportFile(blob, fileName)*<br>accepts 2 parameters：blob as binary object，fileName as file name | Function |
 
 ### Example:
 ```js
@@ -92,11 +92,11 @@ docxload(template, { immediate: false }).then(([blob, exportFile]) => {
 ## Tags
 **docxload** has 2 types of tag：<br>
 1. corresponding with a class in **docx**, supporting almost all the configuration of the class;
-2. created by packaging some configuration code of **docx**
+2. representing some configuration code of **docx**
 
 <br>
 
-| Tag | Description | Class in docx | Configurable |
+| Tag | Description | Class in **docx** | Configurable |
 | :-: | - | :-: | :-: |
 | \<page>\</page> | a page in the document | - | √ |
 | \<title>\</title> | title | - | × |
@@ -121,7 +121,7 @@ Tags should be nested according to the following level rules, tags at the same l
 <br>
 
 ## Tag Attributes
-The following attributes have simplified the related configurations of **docx**. For more attributes of a tag, please check out the document of the tag's corresponding class in **docx**. Please refer to this document when an attribute configuration is different from the docx document.
+The following attributes have simplified some configurations of **docx**. For more attributes of a tag, please check out the documentation of the tag's corresponding class in **docx**. Please refer to this documentation when an attribute configuration is different from **docx**'s.
 
 ### **page**
 | Attribute | Description | Type | Option | Default |
@@ -161,17 +161,17 @@ The following attributes have simplified the related configurations of **docx**.
 ### **table**
 | Attribute | Description | Type | Option | Default |
 | - | - | - | - | - |
-| width | general width of the table, unit: % | String | - | 100% |
+| width | the entire width of a table,<br>unit: % | String | - | 100% |
 
 ### **row**
 | Attribute | Description | Type | Option | Default |
 | - | - | - | - | - |
-| height | height of the row, unit: cm | String, Number | - | 1cm |
+| height | the height of a row,<br>unit: cm | String, Number | - | 1cm |
 
 ### **cell**
 | Attribute | Description | Type | Option | Default |
 | - | - | - | - | - |
-| width | width of the cell, unit: %, the percentage is relative to the general table width | String | - | average width |
+| width | the width of a cell,<br>unit: %,<br>the percentage is relative to the entire table width | String | - | average width |
 | colspan | to merge columns | Number | - | - |
 | rowspan | to merge rows | Number | - | - |
 | align | horizontal alignment | String | center, left, right, distribute, both, start, end | center |
