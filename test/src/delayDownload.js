@@ -1,6 +1,6 @@
 import docxload from '@src/index'
 
-_.addBtn('延迟下载', done => {
+_.addBtn('delay download', done => {
   let template = `
     <page>
       <p>
@@ -13,7 +13,7 @@ _.addBtn('延迟下载', done => {
     .then(([blob, exportFile]) => {
       setTimeout(() => {
         console.log(blob)
-        exportFile(blob, '延迟下载')
+        exportFile(blob, 'delay download')
         done()
       }, 1000)
     })
