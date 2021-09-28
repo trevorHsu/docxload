@@ -1,6 +1,12 @@
 import { toCamelCase } from '@src/utils/string'
 import { BASE64_PATTERN } from '@src/utils/parse'
 
+function addSubAttr(str, splitIndex, result) {
+  let key = str.substring(0, splitIndex).trim()
+  let value = str.substring(splitIndex + 1).trim()
+  if (key && value) result[toCamelCase(key)] = value
+}
+
 // 将字符串格式 "key1: value1; key2: value2" 转成对象 { key1: value1, key2: value2 }
 function parseSubAttrs(data) {
   let result = data
@@ -22,12 +28,7 @@ function parseSubAttrs(data) {
       let curChar = data[scanner]
 
       if (curChar === ';') {
-        if (colonIndex !== -1) {
-          let key = curStr.substring(0, colonIndex).trim()
-          let value = curStr.substring(colonIndex + 1).trim()
-          if (key && value) result[key] = value
-        }
-
+        (colonIndex !== -1) && addSubAttr(curStr, colonIndex, result)
         colonIndex = -1
         curStr = ''
       } else if (curChar === ':') {
@@ -41,11 +42,7 @@ function parseSubAttrs(data) {
       scanner++
     }
 
-    if (colonIndex !== -1) {
-      let key = curStr.substring(0, colonIndex).trim()
-      let value = curStr.substring(colonIndex + 1).trim()
-      if (key && value) result[key] = value
-    }
+    (colonIndex !== -1) && addSubAttr(curStr, colonIndex, result)
   }
 
   return result
