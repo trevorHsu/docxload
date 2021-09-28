@@ -7,9 +7,9 @@
 
 <br>
 
->  docxload 是基于 [docx][docx-url] 包实现的 .docx 文件导出工具。docx 包拥有丰富的配置，能够实现绝大多数 docx 文档的样式需求。但其细致的配置也导致了配置代码相对复杂，当文档样式或内容过多时，其嵌套配置的方式会导致代码可读性降低，维护不方便。
+>  **docxload** 是基于 [docx][docx-url] 包实现的 .docx 文件导出工具。**docx** 包拥有丰富的配置，能够实现绝大多数 docx 文档的样式需求。但其细致的配置也导致了配置代码相对复杂，当文档样式或内容过多时，其嵌套配置的方式会导致代码可读性降低，维护不方便。
 <br><br>
-docxload 简化了 docx 的配置，将一些基础配置封装，并以标签的形式暴露使用。docxload 通过标签的组合来完成配置，使配置工作更快，代码更易读；并且它支持 docx 的大多数配置，充分利用了 docx 的能力，详细配置请见下文。
+**docxload** 简化了 **docx** 的配置，将一些基础配置封装，并以标签的形式暴露使用。**docxload** 通过标签的组合来完成配置，使配置工作更快，代码更易读；并且它支持 **docx** 的大多数配置，充分利用了 **docx** 的能力，详细配置请见下文。
 
 <br>
 
@@ -88,9 +88,9 @@ docxload(template, { immediate: false }).then(([blob, exportFile]) => {
 <br>
 
 ## 标签类型
-docxload 中的标签有两种类型：<br>
-一种是与 docx 包中的类相对应的标签，可支持对应类中的配置选项；<br>
-另一种是通过封装 docx 包中的一些配置而实现的标签。
+**docxload** 中的标签有两种类型：<br>
+一种是与 **docx** 包中的类相对应的标签，可支持对应类中的配置选项；<br>
+另一种是通过封装 **docx** 包中的一些配置而实现的标签。
 <br>
 
 | 标签 | 描述 | docx 中对应的类 | 是否可配置属性 |
@@ -118,12 +118,14 @@ docxload 中的标签有两种类型：<br>
 <br>
 
 ## 标签属性
-以下属性简化了 docx 包的配置，其他属性配置见 docx 包中对应类的配置，部分属性配置与 docx 文档不一样时，以本文档为准。
+以下属性简化了 **docx** 包的配置，其他属性配置见 **docx** 包中对应类的配置，部分属性配置与 **docx** 文档不一样时，以本文档为准。
 
 ### **page**
 | 属性名 | 描述 | 参数类型 | 可选值 | 默认值 |
 | - | - | - | - | - |
-| orientation | 页面方向 | String | vertical: 垂直方向 <br> horizontal: 水平方向 | vertical |
+| orientation | 页面方向 | String | vertical - 垂直方向 <br> horizontal - 水平方向 | vertical |
+| header | 页眉，有多个子属性：<br> **alignment：** 水平对齐；<br>**format：** 字符串模板，该模板提供了模板变量，分别为：当前页码 *$pageCurrent*，总页数 *$pageTotal*；<br>**area：** 规定允许显示表头的页面；<br>支持 \<span\> 标签中的所有属性 | String | **alignment:** center, left, right, distribute, both, start, end;<br>**area:** all - 所有页面, odd - 奇数页, even - 偶数页 | - |
+| footer | 页脚，配置规则与页眉相同 | String | - | - |
 
 ### **p**
 | 属性名 | 描述 | 参数类型 | 可选值 | 默认值 |
@@ -153,7 +155,7 @@ docxload 中的标签有两种类型：<br>
 | - | - | - | - | - |
 | width | 图片宽度 | Number | - | 100 |
 | height | 图片高度 | Number | - | 100 |
-| src | 图片资源，可以是网络地址，或是base64格式；<br>当 src 值为网络地址时，docxload 将自动请求图片资源 | String | - | - |
+| src | 图片资源，可以是网络地址，或是base64格式；<br>当 src 值为网络地址时，**docxload** 将自动请求图片资源 | String | - | - |
 
 ### **table**
 | 属性名 | 描述 | 参数类型 | 可选值 | 默认值 |
@@ -174,7 +176,7 @@ docxload 中的标签有两种类型：<br>
 | align | 水平对齐 | String | center, left, right, distribute, both, start, end | center |
 | vertical-align | 垂直对齐 | String | center, bottom, top | center |
 | fontSize | 字体大小 | Number | - | 20 |
-| border | 单元格边框，有三个子属性配置：<br> **style：** 边框类型 <br>**size：** 边框宽度 数值 <br>**color：** 边框颜色 16进制颜色 | String | **边框类型 style:** <br> single, dash_dot_stroked, dashed,dash_small_gap, dot_dash, dot_dot_dash, <br>dotted, double, double_wave, inset, nil, <br>none, outset, thick, thick_thin_large_gap, thick_thin_medium_gap, <br>thick_thin_small_gap, thin_thick_large_gap, thin_thick_medium_gap, thin_thick_small_gap, thin_thick_thin_large_gap,<br>thin_thick_thin_medium_gap, thin_thick_thin_small_gap, three_d_emboss, three_d_engrave, triple, wave  | - |
+| border | 单元格边框，有三个子属性配置：<br> **style：** 边框类型 <br>**size：** 边框宽度 数值 <br>**color：** 边框颜色 16进制颜色 | String | **style:** <br> single, dash_dot_stroked, dashed,dash_small_gap, dot_dash, dot_dot_dash, <br>dotted, double, double_wave, inset, nil, <br>none, outset, thick, thick_thin_large_gap, thick_thin_medium_gap, <br>thick_thin_small_gap, thin_thick_large_gap, thin_thick_medium_gap, thin_thick_small_gap, thin_thick_thin_large_gap,<br>thin_thick_thin_medium_gap, thin_thick_thin_small_gap, three_d_emboss, three_d_engrave, triple, wave  | - |
 | border-top<br> border-right<br> border-bottom<br> border-left | 单元格单边边框，参数与border属性相同 | String | - | - |
 
 [npm-image]: https://badge.fury.io/js/docxload.svg

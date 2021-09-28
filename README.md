@@ -7,9 +7,9 @@ To generate .docx files on front-end by tag template.
 
 <br>
 
-> **docxload** is a tool for generating .docx files, which is developed based upon [docx][docx-url]. The package **docx** has rich configuration to meet most of demand about setting document content and content style, but its detailed configuration rules sometimes would generate a relatively complexed code. When there are too many document style or content, **docx**'s nested style code would bring low-readable code which is not good for maintenance. 
+> **docxload** is a tool for generating .docx files, which is developed based upon [docx][docx-url]. The package **docx** has rich configuration to meet most of demand about setting document content and content style, but its detailed configuration rules sometimes would generate a relatively complexed code. When there are too many document style or content, **docx**'s nested style code would become low-readable, which is not good for maintenance. 
 <br><br>
-**docxload** simplifies **docx**'s configuration. It uses tag string to represent **docx**'s class and generates docx configuration by combining different tags, which is easier to code and to read.
+**docxload** simplifies **docx**'s configuration. It uses tag string to represent **docx**'s class and generates **docx** configuration by combining different tags, which is easier to code and to read.
 
 <br>
 
@@ -126,14 +126,16 @@ The following attributes have simplified some configurations of **docx**. For mo
 ### **page**
 | Attribute | Description | Type | Option | Default |
 | - | - | - | - | - |
-| orientation | orientation of the page | String | vertical: portrait <br> horizontal: landscape | vertical |
+| orientation | orientation of the page | String | vertical - portrait <br> horizontal - landscape | vertical |
+| header | page header, it has several subattributes:<br>**alignment:** horizontal alignment;<br>**format:** string template, which provides template variables including current page number *$pageCurrent*, total page amount *$pageTotal*;<br>**area:** specific pages on which the header can be showed;<br>all attributes of tag \<span\> are supported | String | **alignment:** center, left, right, distribute, both, start, end;<br>**area:** all - all pages, odd - odd number pages, even - even number pages | - |
+| footer | page footer, its attribute configuration is identical to header's | String | - | - |
 
 ### **p**
 | Attribute | Description | Type | Option | Default |
 | - | - | - | - | - |
 | alignment | horizontal alignment | String | center, left, right, distribute, both, start, end | left |
 | heading | title level | String | title, heading_1, heading_2, heading_3, heading_4, heading_5, heading_6 | - |
-| indent | to increase indentation, one unit as one Tab indentation | Number | - | - |
+| indent | to increase indentation, one unit is one Tab indentation | Number | - | - |
 
 ### **span**
 | Attribute | Description | Type | Option | Default |
@@ -156,7 +158,7 @@ The following attributes have simplified some configurations of **docx**. For mo
 | - | - | - | - | - |
 | width | width of the image | Number | - | 100 |
 | height | height of the image | Number | - | 100 |
-| src | image resource, can be both url or base64 encoded data<br>when the src value is an url，docxload will request for the image automatically | String | - | - |
+| src | image resource, can be both url or base64 encoded data<br>when the src value is an url，**docxload** will request for the image automatically | String | - | - |
 
 ### **table**
 | Attribute | Description | Type | Option | Default |
@@ -177,8 +179,8 @@ The following attributes have simplified some configurations of **docx**. For mo
 | align | horizontal alignment | String | center, left, right, distribute, both, start, end | center |
 | vertical-align | vertical alignment | String | center, bottom, top | center |
 | fontSize | font size | Number | - | 20 |
-| border | borders of the cell, it has 3 subattributes:<br> **style：** border style <br>**size：** border width, Number <br>**color：** border color, color hex values | String | **style:** <br> single, dash_dot_stroked, dashed,dash_small_gap, dot_dash, dot_dot_dash, <br>dotted, double, double_wave, inset, nil, <br>none, outset, thick, thick_thin_large_gap, thick_thin_medium_gap, <br>thick_thin_small_gap, thin_thick_large_gap, thin_thick_medium_gap, thin_thick_small_gap, thin_thick_thin_large_gap,<br>thin_thick_thin_medium_gap, thin_thick_thin_small_gap, three_d_emboss, three_d_engrave, triple, wave  | - |
-| border-top<br> border-right<br> border-bottom<br> border-left | a border of the cell, its parameters are same as the border attribute's | String | - | - |
+| border | borders of a cell, it has 3 subattributes:<br> **style：** border style <br>**size：** border width, Number <br>**color：** border color, color hex values | String | **style:** <br> single, dash_dot_stroked, dashed,dash_small_gap, dot_dash, dot_dot_dash, <br>dotted, double, double_wave, inset, nil, <br>none, outset, thick, thick_thin_large_gap, thick_thin_medium_gap, <br>thick_thin_small_gap, thin_thick_large_gap, thin_thick_medium_gap, thin_thick_small_gap, thin_thick_thin_large_gap,<br>thin_thick_thin_medium_gap, thin_thick_thin_small_gap, three_d_emboss, three_d_engrave, triple, wave  | - |
+| border-top<br> border-right<br> border-bottom<br> border-left | a border of a cell, its attribute configuration is indentical to border's | String | - | - |
 
 [npm-image]: https://badge.fury.io/js/docxload.svg
 [docx-url]: https://github.com/dolanmiu/docx
