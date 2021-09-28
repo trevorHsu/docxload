@@ -124,7 +124,7 @@ docxload(template, { immediate: false }).then(([blob, exportFile]) => {
 | 属性名 | 描述 | 参数类型 | 可选值 | 默认值 |
 | - | - | - | - | - |
 | orientation | 页面方向 | String | vertical - 垂直方向 <br> horizontal - 水平方向 | vertical |
-| header | 页眉，有多个子属性：<br> **alignment：** 水平对齐；<br>**format：** 字符串模板，该模板提供了模板变量，分别为：当前页码 *$pageCurrent*，总页数 *$pageTotal*；<br>**area：** 规定允许显示表头的页面；<br>支持 \<span\> 标签中的所有属性 | String | **alignment:** center, left, right, distribute, both, start, end;<br>**area:** all - 所有页面, odd - 奇数页, even - 偶数页 | - |
+| header | 页眉，有多个子属性：<br> **alignment：** 水平对齐；<br>**format：** 字符串模板，该模板提供了模板变量，分别为：当前页码 *$pageCurrent*，总页数 *$pageTotal*；<br>**area：** 规定允许显示表头的页面；<br>支持 \<span\> 标签中的所有属性 | String | **alignment:**<br>center, left, right, distribute, both, start, end;<br>**area:**<br>all - 所有页面,<br>odd - 奇数页,<br>even - 偶数页 | - |
 | footer | 页脚，配置规则与页眉相同 | String | - | - |
 
 ### **p**
@@ -133,6 +133,7 @@ docxload(template, { immediate: false }).then(([blob, exportFile]) => {
 | alignment | 水平对齐 | String | center, left, right, distribute, both, start, end | left |
 | heading | 标题等级 | String | title, heading_1, heading_2, heading_3, heading_4, heading_5, heading_6 | - |
 | indent | 增加缩进，一个单位为一次Tab缩进 | Number | - | - |
+| spacing | 段落间距，有4个子属性：<br>**before:** 段前间距，数值类型，单位：磅;<br>**after:** 段后间距，数值类型，单位：磅;<br>**line-rule:** 行距规则;<br>**line:** 行距值，数值类型，单位由 *line-rule* 确定； | String | **line-rule:**<br>multiple - 多倍行距，*line* 的单位为行<br>atLeast - 最小行距，*line* 的单位为磅 | - |
 
 ### **span**
 | 属性名 | 描述 | 参数类型 | 可选值 | 默认值 |

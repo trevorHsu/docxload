@@ -127,7 +127,7 @@ The following attributes have simplified some configurations of **docx**. For mo
 | Attribute | Description | Type | Option | Default |
 | - | - | - | - | - |
 | orientation | orientation of the page | String | vertical - portrait <br> horizontal - landscape | vertical |
-| header | page header, it has several subattributes:<br>**alignment:** horizontal alignment;<br>**format:** string template, which provides template variables including current page number *$pageCurrent*, total page amount *$pageTotal*;<br>**area:** specific pages on which the header can be showed;<br>all attributes of tag \<span\> are supported | String | **alignment:** center, left, right, distribute, both, start, end;<br>**area:** all - all pages, odd - odd number pages, even - even number pages | - |
+| header | page header, it has several subattributes:<br>**alignment:** horizontal alignment;<br>**format:** string template, which provides template variables including current page number *$pageCurrent*, total page amount *$pageTotal*;<br>**area:** specific pages on which the header can be showed;<br>all attributes of tag \<span\> are supported | String | **alignment:**<br>center, left, right, distribute, both, start, end;<br>**area:**<br>all - all pages,<br>odd - odd number pages,<br>even - even number pages | - |
 | footer | page footer, its attribute configuration is identical to header's | String | - | - |
 
 ### **p**
@@ -136,6 +136,7 @@ The following attributes have simplified some configurations of **docx**. For mo
 | alignment | horizontal alignment | String | center, left, right, distribute, both, start, end | left |
 | heading | title level | String | title, heading_1, heading_2, heading_3, heading_4, heading_5, heading_6 | - |
 | indent | to increase indentation, one unit is one Tab indentation | Number | - | - |
+| spacing | paragraph spacing, it has 4 subattributes:<br>**before:** spacing before paragraph, number, unit: pound;<br>**after:** spacing after paragraph, number, unit: pound;<br>**line-rule:** line rule;<br>**line:** line spacing value, number, its unit is decided by *line-rule* | String | **line-rule:**<br>multiple - multiple line spacing，*line*'s unit is row<br>atLeast - the minimum line spacing，*line*'s unit is pound | - |
 
 ### **span**
 | Attribute | Description | Type | Option | Default |
