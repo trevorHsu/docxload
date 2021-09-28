@@ -4,8 +4,13 @@ import attrsHandler from './text-attrs'
 
 function text(conf) {
   const attrs = getAttrs(conf)
-  const textConf = {
-    text: conf.value || ''
+  const textContent = conf.value
+  const textConf = {}
+
+  if (textContent instanceof Array) {
+    textConf.children = textContent
+  } else {
+    textConf.text = textContent || ''
   }
 
   processAttrs(attrs, attrsHandler)

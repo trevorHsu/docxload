@@ -9,6 +9,7 @@ import section from './section'
 
 function combineComponents(...sections) {
   const doc = new Document({
+    evenAndOddHeaderAndFooters: true,
     sections: sections && sections.length
       ? sections
       : [{ children: [new Paragraph('')] }]
