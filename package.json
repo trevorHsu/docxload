@@ -1,6 +1,6 @@
 {
   "name": "docxload",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "to generate .docx files on front-end by using tag template.",
   "main": "dist/index.js",
   "scripts": {
