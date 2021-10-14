@@ -1,10 +1,5 @@
-import { PageOrientation } from 'docx'
 import getHeaderAndFooterConf from './getHeaderAndFooterConf'
-
-const PAGE_ORIENTATION = {
-  vertical: PageOrientation.PORTRAIT,
-  horizontal: PageOrientation.LANDSCAPE
-}
+import { PAGE_ORIENTATION } from './variables'
 
 function orientation(val, attrs) { // 页面方向
   val = val || 'vertical'
@@ -12,7 +7,7 @@ function orientation(val, attrs) { // 页面方向
   attrs.properties = {
     page: {
       size: {
-        orientation: PAGE_ORIENTATION[val] || PageOrientation[val.toUpperCase()] || PAGE_ORIENTATION.vertical
+        orientation: PAGE_ORIENTATION[val] || PAGE_ORIENTATION.vertical
       }
     }
   }
