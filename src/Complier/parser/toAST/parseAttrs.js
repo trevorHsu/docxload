@@ -93,4 +93,5 @@ function parseAttrs(data) {
   return result
 }
 
+export { parseSubAttrs }
 export default parseAttrs

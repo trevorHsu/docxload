@@ -9,30 +9,17 @@ module.exports = {
   },
   module: {
     rules: [
-      // {
-      //   test: /\.js$/,
-      //   exclude: /node_modules/,
-      //   use: [
-      //     {
-      //       loader: 'babel-loader',
-      //       options: {
-      //         presets: [
-      //           [
-      //             '@babel/preset-env',
-      //             {
-      //               modules: 'amd',
-      //               targets: {
-      //                 ie: '11',
-      //               },
-      //               corejs: '3',
-      //               useBuiltIns: 'usage'
-      //             }
-      //           ]
-      //         ]
-      //       }
-      //     }
-      //   ]
-      // }
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            plugins: ['@babel/plugin-transform-runtime'],
+            presets: ['@babel/preset-env']
+          }
+        }
+      }
     ]
   },
   output: {

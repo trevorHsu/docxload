@@ -1,6 +1,6 @@
 {
   "name": "docxload",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "to generate .docx files on front-end by using tag template.",
   "main": "dist/index.js",
   "scripts": {
@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
+    "@babel/plugin-transform-runtime": "^7.15.8",
     "@babel/preset-env": "^7.15.0",
     "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^4.0.0-alpha.0",
@@ -42,6 +43,7 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
+    "babel-runtime": "^6.26.0",
     "docx": "^6.0.3"
   }
 }
