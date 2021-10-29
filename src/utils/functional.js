@@ -23,4 +23,26 @@ const syncMap = async function (array, fn) {
   return result
 }
 
-export { pipe, syncMap }
+const flatArray = function(array) {
+  let result = []
+
+  if (!array || !(array instanceof Array)) {
+    return result
+  }
+
+  let stack = [...array]
+
+  while (stack.length) {
+    let cur = stack.pop()
+
+    if (cur instanceof Array) {
+      stack.push(...cur)
+    } else {
+      result.push(cur)
+    }
+  }
+
+  return result.reverse()
+}
+
+export { pipe, syncMap, flatArray }

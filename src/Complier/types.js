@@ -7,7 +7,8 @@ const COMPONENT_TYPES = {
   TEXT: 'text',
   ROW: 'tableRow',
   CELL: 'tableCell',
-  BREAK: 'break'
+  BREAK: 'break',
+  TEMPLATE: 'template'
 }
 
 export { COMPONENT_TYPES }
