@@ -107,6 +107,7 @@ docxload(template, { immediate: false }).then(([blob, exportFile]) => {
 | \<row>\</row> | a row of the table | - | √ |
 | \<cell>\</cell> | a cell of the table | -  | √ |
 | \<br /> | break line | - | × |
+| \<template>\</template> | a placeholder, no meaning | - | × |
 
 <br>
 
@@ -117,6 +118,8 @@ Tags should be nested according to the following level rules, tags at the same l
 **table** > **row** > **cell**
 
 *note: the second level of the tags must be one of \<title\>, \<p\> or \<table\>.*
+
+*\<template> can be embeded in any tag level; <br> when writing a template in jsx syntax, some environment require a root tag in the template; \<template> can be the root tag.*
 
 <br>
 
