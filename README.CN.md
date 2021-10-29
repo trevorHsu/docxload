@@ -104,6 +104,7 @@ docxload(template, { immediate: false }).then(([blob, exportFile]) => {
 | \<row>\</row> | 表格行 | - | √ |
 | \<cell>\</cell> | 单元格 | -  | √ |
 | \<br /> | 换行 | - | × |
+| \<template>\</template> | 占位标签，无实义 | - | × |
 
 <br>
 
@@ -114,6 +115,8 @@ docxload(template, { immediate: false }).then(([blob, exportFile]) => {
 **table** > **row** > **cell**
 
 *注意标签中的第二级必须是 title、p、table 之一*
+
+*template 标签可嵌套在任意标签层级；<br>在使用 jsx语法编写模板时，有些环境要求模板必须有根标签，此时\<template>可作为根标签。*
 
 <br>
 
