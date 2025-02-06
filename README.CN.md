@@ -31,8 +31,8 @@ let template = `
   <page>
     <p>
       <span 
-        underline="type: single; color: #000;"
-        color="#000"
+        underline="type: single; color: #000000;"
+        color="#000000"
       >Hello, </span>
       <span font-size={30}>docxload</span>
     </p>
@@ -144,7 +144,7 @@ docxload(template, { immediate: false }).then(([blob, exportFile]) => {
 | font-size | 文字大小 | Number | - | 20 |
 | bold | 文字加粗 | Boolean | - | false |
 | italics | 斜体文字 | Boolean | - | false |
-| color | 文字颜色，颜色名称 或者 16进制颜色 | String | - | - |
+| color | 文字颜色，16进制颜色 | String | - | - |
 | highlight | 高亮文字，颜色名称 | String | - | - |
 | all-caps  | 全部大写字母 | Boolean | - | false |
 | small-caps | 小型大写字母 | Boolean | - | false |
@@ -185,8 +185,8 @@ docxload(template, { immediate: false }).then(([blob, exportFile]) => {
 
 [npm-image]: https://badge.fury.io/js/docxload.svg
 [docx-url]: https://github.com/dolanmiu/docx
-[demo-url]: https://github.com/trevorHsu/docxload/tree/main/test/src
-[en-doc-url]: https://github.com/trevorHsu/docxload/blob/main/README.md
+[demo-url]: https://github.com/trevorHsu/docxload/tree/v2/demo/src
+[en-doc-url]: https://github.com/trevorHsu/docxload/blob/v2/README.md
 
 [docx-doc-paragraph]: https://docx.js.org/#/usage/paragraph
 [docx-doc-text]: https://docx.js.org/#/usage/text

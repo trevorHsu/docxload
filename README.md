@@ -31,8 +31,8 @@ let template = `
   <page>
     <p>
       <span 
-        underline="type: single; color: #000;"
-        color="#000"
+        underline="type: single; color: #000000;"
+        color="#000000"
       >Hello, </span>
       <span font-size={30}>docxload</span>
     </p>
@@ -147,7 +147,7 @@ The following attributes have simplified some configurations of **docx**. For mo
 | font-size | font size of text | Number | - | 20 |
 | bold | to make text bold | Boolean | - | false |
 | italics | italic text | Boolean | - | false |
-| color | text color, using color name or color hex values | String | - | - |
+| color | text color, using color hex values | String | - | - |
 | highlight | to highlight text, using color name | String | - | - |
 | all-caps  | to transform all the letters into capital letters | Boolean | - | false |
 | small-caps | to transform all the letters into capital letters in mini style | Boolean | - | false |
