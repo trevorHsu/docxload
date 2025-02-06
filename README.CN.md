@@ -45,7 +45,7 @@ docxload(template).then(() => {
   console.log('failed', err)
 })
 ```
-更多配置示例，见[测试用例][demo-url]。
+更多配置示例，见[示例代码][demo-url]。
 
 <br>
 
