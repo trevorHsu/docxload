@@ -3,7 +3,7 @@
 
 [EN Doc][en-doc-url]
 
-通过标签模板语法的配置来实现 .docx 文件的前端导出。
+通过标签语法在前端生成 .docx 文件，支持 JavaScript 和 TypeScript。
 
 <br>
 
