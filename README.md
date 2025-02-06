@@ -3,7 +3,7 @@
 
 [中文文档][cn-doc-url]
 
-To generate .docx files on front-end by tag template.
+To generate .docx files on front-end by using tag template syntax.
 
 <br>
 
@@ -45,7 +45,7 @@ docxload(template).then(() => {
   console.log('failed', err)
 })
 ```
-For more configuration examples, check out [demo][demo-url].
+For more configuration examples, please refer to [demo][demo-url].
 
 <br>
 
@@ -188,8 +188,8 @@ The following attributes have simplified some configurations of **docx**. For mo
 
 [npm-image]: https://badge.fury.io/js/docxload.svg
 [docx-url]: https://github.com/dolanmiu/docx
-[demo-url]: https://github.com/trevorHsu/docxload/tree/main/test/src
-[cn-doc-url]: https://github.com/trevorHsu/docxload/blob/main/README.CN.md
+[demo-url]: https://github.com/trevorHsu/docxload/tree/v2/demo/src
+[cn-doc-url]: https://github.com/trevorHsu/docxload/blob/v2/README.CN.md
 
 [docx-doc-paragraph]: https://docx.js.org/#/usage/paragraph
 [docx-doc-text]: https://docx.js.org/#/usage/text
