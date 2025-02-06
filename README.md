@@ -51,7 +51,7 @@ For more configuration examples, please refer to [demo][demo-url].
 
 ## API
 ```ts
-function docxload(template: string, option?: object | string): Promise
+declare const docxload: (template: string, option?: object | string) => Promise<[Blob, (blob: Blob, fileName?: string) => void]>
 ```
 
 ### Payloads:

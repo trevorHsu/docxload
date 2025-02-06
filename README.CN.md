@@ -51,7 +51,7 @@ docxload(template).then(() => {
 
 ## API
 ```ts
-function docxload(template: string, option?: object | string): Promise
+declare const docxload: (template: string, option?: object | string) => Promise<[Blob, (blob: Blob, fileName?: string) => void]>
 ```
 
 ### 方法参数：
