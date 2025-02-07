@@ -1,6 +1,6 @@
 {
   "name": "docxload",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "to generate .docx files on frontend by using tag template syntax.",
   "files": [
     "dist"
