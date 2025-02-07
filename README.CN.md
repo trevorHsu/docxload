@@ -1,7 +1,7 @@
 # docxload
-![NPM version][npm-image]
+[![NPM version][npm-image]][npm-url] [![PRs Welcome][pr-image]][pr-url]
 
-[EN Doc][en-doc-url]
+[English Documentation ( 英文文档 )][en-doc-url]
 
 通过标签语法在前端生成 .docx 文件，支持 JavaScript 和 TypeScript。
 
@@ -184,6 +184,9 @@ docxload(template, { immediate: false }).then(([blob, exportFile]) => {
 | border-top<br> border-right<br> border-bottom<br> border-left | 单元格单边边框，参数与border属性相同 | String | - | - |
 
 [npm-image]: https://badge.fury.io/js/docxload.svg
+[npm-url]: https://www.npmjs.com/package/docxload
+[pr-image]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg
+[pr-url]: http://makeapullrequest.com
 [docx-url]: https://github.com/dolanmiu/docx
 [demo-url]: https://github.com/trevorHsu/docxload/tree/v2/demo/src
 [en-doc-url]: https://github.com/trevorHsu/docxload/blob/v2/README.md

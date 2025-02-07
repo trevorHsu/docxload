@@ -1,7 +1,7 @@
 # docxload
-![NPM version][npm-image]
+[![NPM version][npm-image]][npm-url] [![PRs Welcome][pr-image]][pr-url]
 
-[中文文档][cn-doc-url]
+[中文文档（Chinese Documentation）][cn-doc-url]
 
 Generate .docx files on the frontend using tag syntax, compatible with both JavaScript and TypeScript.
 
@@ -187,6 +187,9 @@ The following attributes have simplified some configurations of **docx**. For mo
 | border-top<br> border-right<br> border-bottom<br> border-left | a border of a cell, its attribute configuration is identical to border's | String | - | - |
 
 [npm-image]: https://badge.fury.io/js/docxload.svg
+[npm-url]: https://www.npmjs.com/package/docxload
+[pr-image]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg
+[pr-url]: http://makeapullrequest.com
 [docx-url]: https://github.com/dolanmiu/docx
 [demo-url]: https://github.com/trevorHsu/docxload/tree/v2/demo/src
 [cn-doc-url]: https://github.com/trevorHsu/docxload/blob/v2/README.CN.md
