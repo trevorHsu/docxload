@@ -24,8 +24,8 @@ $npm install --save docxload
 ```js
 import docxload from 'docxload'
 
-// when a tag attribute's data type is string, using Double quotes
-// when a tag attribute's data type is js expression, using curly braces
+// When a tag attribute's value is of the string type, it should be enclosed in double quotes
+// When a tag attribute's value is a number, boolean, or a simple expression, it should be enclosed in curly braces
 // a tag attribute could have multiple sub attributes configured as "key1: value1; key2: value2;", such as the "underline" attribute
 let template = `
   <page>

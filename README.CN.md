@@ -24,8 +24,8 @@ $npm install --save docxload
 ```js
 import docxload from 'docxload'
 
-// 标签属性值为 String 类型时，用双引号表示值
-// 标签属性值为 js 表达式时，用大括号表示值
+// 标签属性值为 string 类型时，用双引号表示值
+// 标签属性值为 number、boolean、或简单的表达式时，用大括号表示值
 // 一个属性中，可以有多个子属性配置，形式为："key1: value1; key2: value2;"，如 underline 属性
 let template = `
   <page>
