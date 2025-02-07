@@ -1,5 +1,6 @@
 import { toCamelCase } from '@src/utils/string'
 import { BASE64_PATTERN } from '@src/utils/parse'
+import { simpleEval } from '@src/utils/simpleEval'
 
 function addSubAttr(str: string, splitIndex: number, result: Record<string, string>) {
   let key = str.substring(0, splitIndex).trim()
@@ -84,7 +85,7 @@ function parseAttrs(data: string) {
     } else if (valueRegs[0].test(value)) {
       result[key] = parseSubAttrs(valueRegs[0].exec(value)[1])
     } else if (valueRegs[1].test(value)) {
-      result[key] = parseSubAttrs(eval(valueRegs[1].exec(value)[1]))
+      result[key] = parseSubAttrs(simpleEval(valueRegs[1].exec(value)[1]))
     } else {
       throw new Error(`value of attribute "${key}" without quote`)
     }
